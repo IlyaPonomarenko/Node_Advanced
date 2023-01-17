@@ -14,11 +14,22 @@ async function testA(){
     }
     //opens the connection
     const connection = await mariadb.createConnection(options)
-    
+
+
+    console.log('########## test 1 ############')
     let result = await connection.query("select * from employee")
+    delete result.meta;
     console.log(result)
+    console.log(result.map(item => Object.values(item)))
+
+    console.log('########## test 2 ############')
+    result = await connection.query({
+        rowsAsArray:true, sql:'select * from employee'
+    })
+    delete result.meta;
+    console.log(result)
+
 
     //close connection
     connection.end()
-
 }

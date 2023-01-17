@@ -1,6 +1,6 @@
-drop database if exists emlpoyeeDB;
-create database emlpoyeeDB;
-use emlpoyeeDB;
+drop database if exists employeeDB;
+create database employeeDB;
+use employeeDB;
 create table employee(
     id integer not null primary key,
     firstname varchar(20) not null,
@@ -10,5 +10,4 @@ create table employee(
 );
 insert into employee values(1,'Matt','River','ict',5000); 
 
-insert into employee values(id,firstname,lastname,department,salary)
-values(2,'Mary','Jones','admin',7000);
+insert into employee values(2,'Mary','Jones','admin',7000);
