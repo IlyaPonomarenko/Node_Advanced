@@ -19,3 +19,15 @@ const result = await db.doQuery("select * from employee")
 ```js
 const result = await db.doQuery("select * from employee where id=?",[1])
 ```
+Result:
+```js
+[
+  {
+    id: 2,
+    firstname: 'Mary',
+    lastname: 'Jones',
+    department: 'admin',
+    salary: '7000.00'
+  }
+]
+```
