@@ -19,14 +19,14 @@ module.exports = class Database {
           delete queryResult.meta;
           resolve({ queryResult, resultSet: true });
         } else {
-            resolve({
-                queryResult:{
-                    rowsChanged: queryResult.affectedRows,
-                    insertId: queryResult.insertId, 
-                    status:queryResult.warningStatus
-                },
-                resultSet:false
-            })
+          resolve({
+            queryResult: {
+              rowsChanged: queryResult.affectedRows,
+              insertId: queryResult.insertId,
+              status: queryResult.warningStatus,
+            },
+            resultSet: false,
+          });
         }
       } catch (error) {
         reject("SQL-error" + error);
