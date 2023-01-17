@@ -8,3 +8,7 @@ create table employee(
     department varchar(15),
     salary decimal(6,2)
 );
+insert into employee values(1,'Matt','River','ict',5000); 
+
+insert into employee values(id,firstname,lastname,department,salary)
+values(2,'Mary','Jones','admin',7000);
