@@ -1,5 +1,7 @@
 An example of the option object for constructor:
 
+mysql.server start
+
 ```js
 {
     host: "localhost",

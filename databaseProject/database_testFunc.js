@@ -26,4 +26,30 @@ async function getAll() {
 //main function
 async function run() {
   await getAll();
+  await add({
+    id:200,
+    firstname:"Mike",
+    lastname:"jones",
+    department:"maints",
+    salary:4000
+  })
+  await getAll();
+}
+
+async function add(employee){
+  try{
+    const parameters = [
+      employee.id,
+      employee.firstname,
+      employee.lastname,
+      employee.department,
+      employee.salary
+    ]
+    const sql = "insert into employee values(?,?,?,?,?)"
+    const status = await db.doQuery(sql, parameters)
+    console.log(status)
+  }
+  catch(err){
+    console.log(err)
+  }
 }
