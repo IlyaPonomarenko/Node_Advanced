@@ -34,8 +34,17 @@ async function run() {
     salary:4000
   })
   await getAll();
+  await remove(200)
+  await getAll();
 }
-
+async function remove(id){
+ try {
+  const status = await db.doQuery("delete from employee where id=?", [id])
+  console.log(status)
+ } catch (error) {
+  
+ }
+}
 async function add(employee){
   try{
     const parameters = [
