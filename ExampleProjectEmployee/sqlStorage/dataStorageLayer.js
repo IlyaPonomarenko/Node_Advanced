@@ -11,8 +11,6 @@ const getAllSql = sql.getAll.join(" ");
 const getOneSql = sql.getOne.join(" ");
 const insertSql = sql.insertOne.join(" ");
 
-
-
 //Datastorage class
 
 module.exports = class Datastorage {
@@ -24,13 +22,11 @@ module.exports = class Datastorage {
   }
 
   getAll() {
-    return new Promise(async(resolve, reject) =>{
-        try {
-            const result = await this.db.doQuery(getAllSql)
-            resolve(result.queryResult)
-        } catch (error) {
-            
-        }
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await this.db.doQuery(getAllSql);
+        resolve(result.queryResult);
+      } catch (error) {}
     });
   } //end getAll
 
@@ -39,8 +35,8 @@ module.exports = class Datastorage {
       if (!id) {
         reject(MESSAGES.NOT_FOUND("---empty---"));
       } else {
-        const result = await this.db.doQuery(getOneSql,[id]);
-        if (result.queryResult.length>0) {
+        const result = await this.db.doQuery(getOneSql, [id]);
+        if (result.queryResult.length > 0) {
           resolve(result.queryResult[0]);
         } else {
           reject(MESSAGES.NOT_FOUND(id));
@@ -51,44 +47,40 @@ module.exports = class Datastorage {
 
   insert(employee) {
     return new Promise(async (resolve, reject) => {
-        try {
-            if (employee) {
-                if (!employee.id) {
-                  reject(MESSAGES.NOT_INSERTED());
-                } else if (await getFromStorage(employee.id)) {
-                  reject(MESSAGES.ALREADY_IN_USE(employee.id));
-                } else if (await addToStorage(employee)) {
-                  resolve(MESSAGES.INSERT_OK(employee.id));
-                } else {
-                  reject(MESSAGES.NOT_INSERTED());
-                }
-              } else {
-                reject(MESSAGES.NOT_INSERTED());
-              }
-        } catch (error) {
-            console.log(ers)
+      try {
+        if (employee) {
+          if (!employee.id) {
+            reject(MESSAGES.NOT_INSERTED());
+          } else if (await getFromStorage(employee.id)) {
+            reject(MESSAGES.ALREADY_IN_USE(employee.id));
+          } else if (await addToStorage(employee)) {
+            resolve(MESSAGES.INSERT_OK(employee.id));
+          } else {
+            reject(MESSAGES.NOT_INSERTED());
+          }
+        } else {
+          reject(MESSAGES.NOT_INSERTED());
         }
-      
+      } catch (error) {
+        console.log(ers);
+      }
     });
   } //end of insert
 
   update(employee) {
     return new Promise(async (resolve, reject) => {
-        try {
-            if (employee) {
-                if (await updateStorage(employee)) {
-                  resolve(MESSAGES.UPDATE_OK(employee.id));
-                } else {
-                  reject(MESSAGES.NOT_UPDATED());
-                }
-              } else {
-                reject(MESSAGES.NOT_UPDATED());
-              }
-            
-        } catch (error) {
-            
+      try {
+        if (employee) {
+          const status = await this.db.doQuery(updateSql, updateParameters);
+          if (await updateStorage(employee)) {
+            resolve(MESSAGES.UPDATE_OK(employee.id));
+          } else {
+            reject(MESSAGES.NOT_UPDATED());
+          }
+        } else {
+          reject(MESSAGES.NOT_UPDATED());
         }
-      
+      } catch (error) {}
     });
   } //end update
 
