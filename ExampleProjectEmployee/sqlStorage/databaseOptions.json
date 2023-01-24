@@ -1,0 +1,9 @@
+{
+    "host": "localhost",
+    "port": 3306,
+    "user": "ILYA",
+    "password": "secret",
+    "database": "employeeDB",
+    "allowPublicKeyRetrieval":true
+
+}
