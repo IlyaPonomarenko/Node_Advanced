@@ -25,4 +25,26 @@ async function createdb(createStatements, adminPass) {
     user: createStatements.user,
     password: createStatements.password,
   };
+  const DEBUG = createStatements.debug;
+  const db = new Database(options)
+  const user =`"${createStatements.user}"@"${createStatements.host}"`;
+  const dropDatabaseSql = `drop database if exists ${createStatements.database}`
+  const createDatabaseSql = `create database ${createStatements.database}`;
+  const dropUserSql = `drop user if exists ${user}`;
+  const createUserSql = `create user if not exists ${user}` +
+  `identified by "${createStatements.userpassword}"`;
+  try {
+    await db.doQuery(dropDatabaseSql);
+    if(DEBUG) printStatement(dropDatabaseSql)
+    await db.doQuery(createDatabaseSql);
+    if(DEBUG) printStatement(createDatabaseSql);
+    if(createStatements.dropUser){
+        await db.doQuery(dropUserSql)
+        if(DEBUG) printStatement(dropUserSql)
+    }
+    await db.doQuery(createUserSql)
+    if(DEBUG) printStatement(createUserSql)
+  } catch (error) {
+    
+  }
 }
