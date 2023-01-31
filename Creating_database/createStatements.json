@@ -1,0 +1,25 @@
+{
+    "host": "localhost",
+    "port": 3306,
+    "user": "ILYA",
+    "password": "secret",
+    "allowPublicKeyRetrieval":true,
+    "debug":true,
+    "database": "employeedb2",
+    "tables":[
+        {
+            "tableName":"employee",
+            "columns":[
+                "employeeId integer not null primary key",
+                "firstname varchar(20) not null",
+                "lastname varchar(30) not null",
+                "department varchar(15)",
+                "salary decimal(6,2)"
+            ],
+            "data":[
+                [1, "ilya","Ponomarenko","ict",4000],
+                [2, "Dasha","Khilchuk","ict",4000]
+            ]
+        }
+    ]
+}
