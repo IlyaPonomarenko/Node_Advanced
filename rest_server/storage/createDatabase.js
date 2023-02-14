@@ -8,7 +8,7 @@ const printError = message =>
     printMessage(`${'#'.repeat(20)} Error ${'#'.repeat(20)}\n`+
     `${message}\n${'#'.repeat(47)}`);
 
-let createStatementFile='./createStatements.json';
+let createStatementFile='./computerCreateStatements.json';
 let adminPass = '';
 
 if(process.argv.length>2){
