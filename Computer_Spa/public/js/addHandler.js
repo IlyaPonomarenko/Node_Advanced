@@ -7,5 +7,18 @@
             processor: processor.value,
             amount: +amountField.value
         }
+        try {
+            const options={
+                method:"POST",
+                body:JSON.stringify(computer),
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                mode:"cors"
+            }
+            
+        } catch (error) {
+            
+        }
     }
 })();
