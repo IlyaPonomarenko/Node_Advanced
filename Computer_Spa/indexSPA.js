@@ -1,10 +1,14 @@
-const path = require("path")
+'use strict';
 
-const express = require("express");
-const app = express();
+const path = require('path');
 
-const {port,host}=require("./config.json");
-app.use(express.static(path.join(__dirname,"public")))
+const express=require('express');
+const app=express();
 
-app.get("/",(req,res)=>res.sendFile(path.join(__dirname,"menu.html")))
-app.listen(port,host, ()=>console.log(`${host}:${port} serving`))
+const {port,host}=require('./config.json');
+
+app.use(express.static(path.join(__dirname,'public')));
+
+app.get('/',(req,res)=>res.sendFile(path.join(__dirname,'menu.html')));
+
+app.listen(port,host,()=>console.log(`${host}:${port} serving...`));
