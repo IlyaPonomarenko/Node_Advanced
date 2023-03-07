@@ -1,12 +1,18 @@
 "use strict";
 
-const path = require("path");
+import * as path from "path/posix";
+
+// const fetch = require("node-fetch");
+import { fetch } from "./fetchlib.js";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const { port, host } = require("./config.json");
+
+import { fileURLToPath } from "url";
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const express = require("express");
 const app = express();
-// const fetch = require("node-fetch");
-const fetch = require("./fetchlib")
-
 const { port, host } = require("./config.json");
 
 app.use(express.json);

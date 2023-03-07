@@ -1,5 +1,4 @@
-"use strict";
-const http = require("http");
+import * as http from "http"
 
 const fetch = (uri, fetchOptions) => {
   new Promise((resolve, reject) => {
@@ -31,4 +30,4 @@ const fetch = (uri, fetchOptions) => {
 //   headers: { "Content-Type": "application/json" },
 // });
 
-module.exports = fetch;
+export {fetch}
